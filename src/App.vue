@@ -1,21 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/incomes">Incomes</router-link>
+    <div v-if="processing">
+      <BlockUI :message="'Processando la petición...'"></BlockUI>
     </div>
-    <router-view/>
+    <Navegation></Navegation>
+    <main class="container">
+      <!-- Content here -->
+      <router-view/>
+    </main>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<script>
+  import 'bootstrap';
+  import globalTypes from '@/types/global'
+  import {mapGetters} from 'vuex'
+  import Navegation from '@/components/Navegation.vue';
+  export default {
+    name: "Home",
+    components: {
+      Navegation
+    },
+    computed: {
+      ...mapGetters({
+        processing: globalTypes.getters.processing
+      })
+    }
+  }
+</script>
+
+<style lang="scss">
+  @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+  @import '@/assets/scss/style.scss';
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /*margin-top: 60px;*/
+  }
 </style>

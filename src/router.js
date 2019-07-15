@@ -1,29 +1,62 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import IncomeList from './components/IncomeList.vue'
+import IncomesView from './views/IncomesView.vue'
+import LoginComponent from '@/components/Auth/Login'
+import store from '@/store'
+import authTypes from '@/types/auth'
+import globalTypes from '@/types/global'
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {Auth: false, title: 'Home'}
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginComponent,
+      meta: {Auth: false, title: 'Login'},
+      // beforeEnter: (to, from, next) => {
+      //   if (store.state.authModule.logged) {
+      //     next({path: '/'});
+      //   } else {
+      //     next();
+      //   }
+      // }
     },
     {
       path: '/incomes',
-      name: 'incomeList',
-      component: IncomeList
+      name: 'incomes_view',
+      component: IncomesView,
+      meta: {Auth: true, title: 'Incomes'}
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/expenditures',
+      name: 'expenditures_view',
+      meta: {Auth: true, title: 'Expenditures'},
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/ExpendituresView.vue')
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  if (to.meta.Auth && !store.state.authModule.logged) {
+    next({path: '/login'});
+  } else {
+    // if (store.state.authModule.logged) {
+    // }
+    next();
+  }
+});
+
+export default router
