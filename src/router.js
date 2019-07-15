@@ -15,20 +15,20 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
-      meta: {Auth: false, title: 'Home'}
+      meta: {Auth: true, title: 'Home'}
     },
     {
       path: '/login',
       name: 'login',
       component: LoginComponent,
       meta: {Auth: false, title: 'Login'},
-      // beforeEnter: (to, from, next) => {
-      //   if (store.state.authModule.logged) {
-      //     next({path: '/'});
-      //   } else {
-      //     next();
-      //   }
-      // }
+      beforeEnter: (to, from, next) => {
+        if (store.state.authModule.logged) {
+          next({path: '/'});
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/incomes',
@@ -50,11 +50,11 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
+  console.log(to);
+  // console.log(from);
   if (to.meta.Auth && !store.state.authModule.logged) {
     next({path: '/login'});
   } else {
-    // if (store.state.authModule.logged) {
-    // }
     next();
   }
 });

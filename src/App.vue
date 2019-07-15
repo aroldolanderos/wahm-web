@@ -3,7 +3,7 @@
     <div v-if="processing">
       <BlockUI :message="'Processando la petición...'"></BlockUI>
     </div>
-    <Navegation></Navegation>
+    <Navegation v-if="isLogged"></Navegation>
     <main class="container">
       <!-- Content here -->
       <router-view/>
@@ -14,6 +14,7 @@
 <script>
   import 'bootstrap';
   import globalTypes from '@/types/global'
+  import authTypes from '@/types/auth'
   import {mapGetters} from 'vuex'
   import Navegation from '@/components/Navegation.vue';
   export default {
@@ -23,7 +24,8 @@
     },
     computed: {
       ...mapGetters({
-        processing: globalTypes.getters.processing
+        processing: globalTypes.getters.processing,
+        isLogged: authTypes.getters.logged
       })
     }
   }

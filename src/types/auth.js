@@ -3,7 +3,7 @@ import namespace from '@/utils/namespace'
 export default namespace('auth', {
     getters: [
         'user',
-        'loged'
+        'logged'
     ],
     actions: [
         'login',

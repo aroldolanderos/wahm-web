@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">WAHM</a>
+        <router-link class="navbar-brand" :to="{ name: 'home' }">WAHM</router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,8 +18,14 @@
                         Expenditures
                     </router-link>
                 </li>
-                <li class="nav-item" v-if="isLogged">
-                    <a href="#" @click.prevent="_logout()">Logout</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.data.firstname }} {{ user.data.lastname }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#"  @click.prevent="logout()">Logout</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -42,7 +48,8 @@
         },
         computed: {
             ...mapGetters({
-                isLogged: authTypes.getters.logged
+                isLogged: authTypes.getters.logged,
+                user: authTypes.getters.user
             })
         }
     }

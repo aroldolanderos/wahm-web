@@ -73,7 +73,7 @@ const actions = {
 
 const getters = {
     // obtenemos el usuario
-    [types.getters.users]: (state) => {
+    [types.getters.user]: (state) => {
         return state.user
     },
     // esta logeado?

@@ -17,7 +17,7 @@
                                    placeholder="Enter email"
                                    name="email"
                                    v-model="email"
-                                   v-validate>
+                                   v-validate data-vv-rules="required|email">
                             <div class="invalid-feedback" :class="{ 'd-none': !errors.has('email') }">
                                 {{ errors.first('email') }}
                             </div>
@@ -88,5 +88,7 @@
 </script>
 
 <style scoped>
-
+    .login {
+        margin-top: 100px;
+    }
 </style>
