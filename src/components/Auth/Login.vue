@@ -35,6 +35,9 @@
                                 {{ errors.first('password') }}
                             </div>
                         </div>
+                        <small id="emailHelp" class="form-text text-muted pull-left">
+                            <router-link :to="{name: 'register'}">Registrarme</router-link>
+                        </small>
                         <hr>
                         <button type="submit" class="btn btn-primary btn-block">Iniciar sessión</button>
                     </form>

@@ -36,7 +36,7 @@ const actions = {
     [types.actions.register]: ({commit}, userInput) => {
         commit(globalTypes.mutations.startProcessing);
         return new Promise((resolve, reject) => {
-            Vue.http.post('register', {user: userInput})
+            Vue.http.post('register', userInput)
                 .then(user => {
                     resolve(user);
                 })

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import IncomesView from './views/IncomesView.vue'
 import LoginComponent from '@/components/Auth/Login'
+import RegisterComponent from '@/components/Auth/Register'
 import store from '@/store'
 import authTypes from '@/types/auth'
 import globalTypes from '@/types/global'
@@ -31,6 +32,19 @@ const router = new Router({
       }
     },
     {
+      path: '/register',
+      name: 'register',
+      component: RegisterComponent,
+      meta: {Auth: false, title: 'Register'},
+      beforeEnter: (to, from, next) => {
+        if (store.state.authModule.logged) {
+          next({path: '/'});
+        } else {
+          next();
+        }
+      }
+    },
+    {
       path: '/incomes',
       name: 'incomes_view',
       component: IncomesView,
@@ -50,8 +64,6 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
-  console.log(to);
-  // console.log(from);
   if (to.meta.Auth && !store.state.authModule.logged) {
     next({path: '/login'});
   } else {
