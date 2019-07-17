@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+require ('./filters')
 
 import vueResource from "vue-resource";
 Vue.use(vueResource);
@@ -28,6 +29,7 @@ const i18n = new VueI18n({
   locale: store.state.language,
   messages
 });
+
 
 // import {ClientTable} from 'vue-tables-2'
 // Vue.use(ClientTable, {}, false, 'bootsrap4', 'default')
