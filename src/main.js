@@ -1,6 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+
+import vueResource from "vue-resource";
+Vue.use(vueResource);
+Vue.http.options.root = process.env.VUE_APP_API_URL_WAHM;
+Vue.http.interceptors.push((request, next) => {
+  request.headers.set('Authorization', `Bearer ${window.localStorage.getItem('_token')}`);
+  next();
+});
+
 import store from './store'
 
 // Vue.config.productionTip = false;
