@@ -10,12 +10,12 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'incomes_view' }">
-                        Incomes
+                        {{ $t('navigation.incomes') }}
                     </router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'expenditures_view' }">
-                        Expenditures
+                        {{ $t('navigation.expenditures') }}
                     </router-link>
                 </li>
                 <li class="nav-item dropdown" v-if="user">
@@ -24,7 +24,9 @@
                         {{ user.data.firstname }} {{ user.data.lastname }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"  @click.prevent="logout()">Logout</a>
+                        <a class="dropdown-item" href="#"  @click.prevent="logout()">
+                            {{ $t('navigation.logout') }}
+                        </a>
                     </div>
                 </li>
             </ul>

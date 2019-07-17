@@ -5,7 +5,10 @@ export default {
             expenditures: 'Gastos',
             logout: 'Cerrar'
         },
-        messages: {}
+        messages: {},
+        expenditures: {
+            title: 'Gastos'
+        }
     },
     en: {
         navigation: {
@@ -13,6 +16,9 @@ export default {
             expenditures: 'Expenditures',
             logout: 'Logout'
         },
-        messages: {}
+        messages: {},
+        expenditures: {
+            title: 'Expenditures'
+        }
     }
 }

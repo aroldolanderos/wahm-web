@@ -21,19 +21,19 @@ import validatorEs from '@/validators/es'
 Validator.localize('es', validatorEs);
 Vue.use(VeeValidate);
 
-// import VueI18n from 'vue-i18n'
-// Vue.use(VueI18n);
-// import messages from '@/translations'
-// const i18n = new VueI18n({
-//   locale: store.getters.language,
-//   messages
-// });
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n);
+import messages from '@/translations'
+const i18n = new VueI18n({
+  locale: store.state.language,
+  messages
+});
 
 // import {ClientTable} from 'vue-tables-2'
 // Vue.use(ClientTable, {}, false, 'bootsrap4', 'default')
 
 new Vue({
-  // i18n,
+  i18n,
   router,
   store,
   render: h => h(App)
