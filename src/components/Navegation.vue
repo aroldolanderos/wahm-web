@@ -18,7 +18,7 @@
                         Expenditures
                     </router-link>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" v-if="user">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ user.data.firstname }} {{ user.data.lastname }}
