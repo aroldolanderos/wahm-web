@@ -6,6 +6,7 @@ import LoginComponent from '@/components/Auth/Login'
 import RegisterComponent from '@/components/Auth/Register'
 import ExpendituresList from '@/components/Expenditure/ExpendituresList'
 import store from '@/store'
+import authTypes from '@/types/auth'
 
 Vue.use(Router);
 
@@ -63,6 +64,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.Auth && !store.state.authModule.logged) {
     next({path: '/login'});
   } else {
+    if (store.state.authModule.logged) {
+      store.commit(authTypes.mutations.setUser);
+    }
     next();
   }
 });
