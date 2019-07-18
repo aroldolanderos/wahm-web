@@ -5,11 +5,13 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        <LanguageSelector></LanguageSelector>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li>
-                    <LanguageSelector></LanguageSelector>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'home' }">
+                        {{ $t('navigation.dashboard') }}
+                    </router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'incomes_view' }">

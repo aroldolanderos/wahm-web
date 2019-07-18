@@ -2,6 +2,7 @@ export default {
     es: {
         navigation: {
             language: 'Idioma',
+            dashboard: 'Dashboard',
             incomes: 'Ingresos',
             expenditures: 'Gastos',
             profile: 'Perfil',
@@ -33,6 +34,7 @@ export default {
     en: {
         navigation: {
             language: 'Language',
+            dashboard: 'Dashboard',
             incomes: 'Incomes',
             expenditures: 'Expenditures',
             profile: 'Profile',
