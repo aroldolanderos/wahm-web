@@ -2,15 +2,6 @@ import types from '@/types/income'
 import globalTypes from '@/types/global'
 import Vue from 'vue'
 
-import vueResource from "vue-resource"
-Vue.use(vueResource);
-Vue.http.options.root = process.env.VUE_APP_API_URL_WAHM;
-Vue.http.interceptors.push((request, next) => {
-    request.headers.set('Authorization', `Bearer: ${window.localStorage.getItem('_token')}`);
-    console.log(request.headers);
-    next();
-});
-
 const state = {
     incomes: [],
     query: {
@@ -21,19 +12,16 @@ const state = {
 const actions = {
     [types.actions.fetchIncomes]: ({commit}) => {
         commit(globalTypes.mutations.startProcessing);
-        return new Promise((resolve, reject) => {
-            Vue.http.get('incomes')
-                .then(incomes => {
-                    commit(types.mutations.receivedIncomes, {apiResponse: incomes});
-                    resolve(incomes.data);
-                })
-                .catch(error => {
-                    reject(error)
-                })
-                .finally(() => {
-                    commit(globalTypes.mutations.stopProcessing);
-                });
-        });
+        Vue.http.get('incomes')
+            .then( incomes => {
+                commit(types.mutations.receivedIncomes, {apiResponse: incomes});
+            })
+            .catch(error => {
+                console.error(error)
+            })
+            .finally(() => {
+                commit(globalTypes.mutations.stopProcessing);
+            });
     }
 };
 
@@ -43,8 +31,8 @@ const getters = {
         let incomes = state.incomes;
         if (state.query.search) {
             incomes = incomes.filter(income => income.name .toLowerCase().includes(state.query.search));
-            return incomes;
         }
+        return incomes;
     }
 };
 

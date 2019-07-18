@@ -6,6 +6,13 @@ export default {
             logout: 'Salir'
         },
         messages: {},
+        incomes: {
+            title: 'Ingresos',
+            model: {
+                amount: 'Monto',
+                name: 'Nombre'
+            }
+        },
         expenditures: {
             title: 'Gastos',
             model: {
@@ -28,6 +35,10 @@ export default {
             logout: 'Logout'
         },
         messages: {},
+        incomes: {
+            amount: 'Amount',
+            name: 'Name'
+        },
         expenditures: {
             title: 'Expenditures',
             model: {

@@ -2,12 +2,12 @@ import namespace from '@/utils/namespace'
 
 export default namespace('expenditure', {
     actions: [
-        'fetchExpenditures'
+        'fetchExpenditures',
+        'search'
     ],
 
     getters: [
-        'expenditures',
-        'search'
+        'expenditures'
     ],
 
     mutations: [

@@ -1,33 +1,17 @@
 <template>
     <div>
-        <h1>Incomes</h1>
+        <h1>{{ $t('incomes.title') }}</h1>
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">{{ $t('incomes.model.amount') }}</th>
+                <th scope="col">{{ $t('incomes.model.name') }}</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+            <tr v-for="income in incomes.data">
+                <td>{{ income.amount | toCLP}}</td>
+                <td>{{ income.name }}</td>
             </tr>
             </tbody>
         </table>
@@ -36,16 +20,16 @@
 
 <script>
     import incomeTypes from '@/types/income'
-    import {mapGetters} from  'vuex'
+    import {mapGetters} from 'vuex';
     export default {
         name: 'income-list',
-        data () {
-            return {
-
-            }
-        },
         mounted() {
-            this.$store.dispatch(incomeTypes.actions.fetchIncomes)
+            this.$store.dispatch(incomeTypes.actions.fetchIncomes);
+        },
+        computed: {
+            ...mapGetters({
+                incomes: incomeTypes.getters.incomes
+            })
         }
     }
 </script>

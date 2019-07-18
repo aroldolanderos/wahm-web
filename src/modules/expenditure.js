@@ -17,7 +17,7 @@ const actions = {
                 commit(types.mutations.receivedExpenditures, {apiResponse: expenditures});
             })
             .catch(error => {
-                reject(error);
+                console.error(error);
             })
             .finally(() => {
                 commit(globalTypes.mutations.stopProcessing);

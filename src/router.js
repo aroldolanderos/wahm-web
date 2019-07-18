@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import IncomesView from './views/IncomesView.vue'
+import IncomesList from '@/components/Incomes/IncomesList'
 import LoginComponent from '@/components/Auth/Login'
 import RegisterComponent from '@/components/Auth/Register'
 import ExpendituresList from '@/components/Expenditure/ExpendituresList'
@@ -47,7 +47,7 @@ const router = new Router({
     {
       path: '/incomes',
       name: 'incomes_view',
-      component: IncomesView,
+      component: IncomesList,
       meta: {Auth: true, title: 'Incomes'}
     },
     {
