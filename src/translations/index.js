@@ -1,8 +1,10 @@
 export default {
     es: {
         navigation: {
+            language: 'Idioma',
             incomes: 'Ingresos',
             expenditures: 'Gastos',
+            profile: 'Perfil',
             logout: 'Salir'
         },
         messages: {},
@@ -30,14 +32,19 @@ export default {
     },
     en: {
         navigation: {
+            language: 'Language',
             incomes: 'Incomes',
             expenditures: 'Expenditures',
+            profile: 'Profile',
             logout: 'Logout'
         },
         messages: {},
         incomes: {
-            amount: 'Amount',
-            name: 'Name'
+            title: 'Incomes',
+            model: {
+                amount: 'Amount',
+                name: 'Name'
+            }
         },
         expenditures: {
             title: 'Expenditures',
@@ -49,7 +56,7 @@ export default {
                 measure: 'measure',
                 category: 'Category',
                 lvl_need: 'Level of need',
-                created_At: 'Created at'
+                created_at: 'Created at'
 
             }
         }

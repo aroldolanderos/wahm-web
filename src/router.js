@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import IncomesList from '@/components/Incomes/IncomesList'
+import IncomesView from '@/components/Incomes/IncomesView'
 import LoginComponent from '@/components/Auth/Login'
 import RegisterComponent from '@/components/Auth/Register'
 import ExpendituresList from '@/components/Expenditure/ExpendituresList'
 import store from '@/store'
 import authTypes from '@/types/auth'
+import globalTypes from '@/types/global'
 
 Vue.use(Router);
 
@@ -47,7 +48,7 @@ const router = new Router({
     {
       path: '/incomes',
       name: 'incomes_view',
-      component: IncomesList,
+      component: IncomesView,
       meta: {Auth: true, title: 'Incomes'}
     },
     {
@@ -67,6 +68,7 @@ router.beforeEach((to, from, next) => {
     if (store.state.authModule.logged) {
       store.commit(authTypes.mutations.setUser);
     }
+    store.commit(globalTypes.mutations.setLanguage);
     next();
   }
 });

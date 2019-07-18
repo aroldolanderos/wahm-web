@@ -8,6 +8,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <LanguageSelector></LanguageSelector>
+                </li>
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'incomes_view' }">
                         {{ $t('navigation.incomes') }}
@@ -24,6 +27,8 @@
                         {{ user.data.firstname }} {{ user.data.lastname }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">{{ $t('navigation.profile') }}</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"  @click.prevent="logout()">
                             {{ $t('navigation.logout') }}
                         </a>
@@ -37,8 +42,13 @@
 <script>
     import {mapGetters, mapActions} from 'vuex';
     import authTypes from '@/types/auth'
+    import LanguageSelector from '@/components/LanguageSelector.vue'
+
     export default {
         name: 'Navigation',
+        components: {
+            LanguageSelector
+        },
         methods: {
             ...mapActions({
                 _logout: authTypes.actions.logout

@@ -22,7 +22,7 @@
     import incomeTypes from '@/types/income'
     import {mapGetters} from 'vuex';
     export default {
-        name: 'income-list',
+        name: 'incomeView',
         mounted() {
             this.$store.dispatch(incomeTypes.actions.fetchIncomes);
         },
