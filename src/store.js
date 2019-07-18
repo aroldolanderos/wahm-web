@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import globalTypes from '@/types/global'
 import authModule from '@/modules/auth'
+import expenditureModule from '@/modules/expenditure'
 import {Validator} from 'vee-validate'
 import validatorEs from '@/validators/es'
 import validatorEn from '@/validators/en'
@@ -44,6 +45,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    authModule
+    authModule,
+    expenditureModule
   }
 })

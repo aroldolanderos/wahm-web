@@ -3,9 +3,23 @@ export default {
         navigation: {
             incomes: 'Ingresos',
             expenditures: 'Gastos',
-            logout: 'Cerrar'
+            logout: 'Salir'
         },
-        messages: {}
+        messages: {},
+        expenditures: {
+            title: 'Gastos',
+            model: {
+                amount: 'Monto',
+                type: 'Tipo',
+                name: 'Nombre',
+                quantity: 'Cantidad',
+                measure: 'Medida',
+                category: 'Categoría',
+                lvl_need: 'Necesidad',
+                created_at: 'Creado'
+
+            }
+        }
     },
     en: {
         navigation: {
@@ -13,6 +27,20 @@ export default {
             expenditures: 'Expenditures',
             logout: 'Logout'
         },
-        messages: {}
+        messages: {},
+        expenditures: {
+            title: 'Expenditures',
+            model: {
+                amount: 'Amount',
+                type: 'type',
+                name: 'name',
+                quantity: 'quantity',
+                measure: 'measure',
+                category: 'Category',
+                lvl_need: 'Level of need',
+                created_At: 'Created at'
+
+            }
+        }
     }
 }

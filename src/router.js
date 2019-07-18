@@ -4,9 +4,9 @@ import Home from './views/Home.vue'
 import IncomesView from './views/IncomesView.vue'
 import LoginComponent from '@/components/Auth/Login'
 import RegisterComponent from '@/components/Auth/Register'
+import ExpendituresList from '@/components/Expenditure/ExpendituresList'
 import store from '@/store'
 import authTypes from '@/types/auth'
-import globalTypes from '@/types/global'
 
 Vue.use(Router);
 
@@ -53,11 +53,8 @@ const router = new Router({
     {
       path: '/expenditures',
       name: 'expenditures_view',
-      meta: {Auth: true, title: 'Expenditures'},
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/ExpendituresView.vue')
+      component: ExpendituresList,
+      meta: {Auth: true, title: 'Expenditures'}
     }
   ]
 });
@@ -67,6 +64,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.Auth && !store.state.authModule.logged) {
     next({path: '/login'});
   } else {
+    if (store.state.authModule.logged) {
+      store.commit(authTypes.mutations.setUser);
+    }
     next();
   }
 });
