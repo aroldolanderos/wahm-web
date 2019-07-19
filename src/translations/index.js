@@ -2,7 +2,7 @@ export default {
     es: {
         navigation: {
             language: 'Idioma',
-            dashboard: 'Dashboard',
+            dashboard: 'Reportes',
             incomes: 'Ingresos',
             expenditures: 'Gastos',
             profile: 'Perfil',

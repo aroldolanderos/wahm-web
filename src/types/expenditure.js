@@ -3,7 +3,9 @@ import namespace from '@/utils/namespace'
 export default namespace('expenditure', {
     actions: [
         'fetchExpenditures',
-        'search'
+        'search',
+        'create',
+        'update'
     ],
 
     getters: [

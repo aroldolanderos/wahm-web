@@ -10,6 +10,22 @@ const state = {
 };
 
 const actions = {
+    [types.actions.create]:  ({commit}, expenditureInput) => {
+        commit(globalTypes.mutations.startProcessing);
+        return new Promise( (resolve, reject) => {
+            Vue.http.post('expenditures', expenditureInput)
+                .then(expenditure => {
+                    console.log(expenditure);
+                    resolve(expenditure);
+                })
+                .catch(error => {
+                    reject(error)
+                })
+                .finally(() => {
+                    commit(globalTypes.mutations.stopProcessing);
+                });
+        })
+    },
     [types.actions.fetchExpenditures]: ({commit}) => {
         commit(globalTypes.mutations.startProcessing);
         Vue.http.get('expenditures')

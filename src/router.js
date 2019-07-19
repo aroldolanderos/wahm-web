@@ -4,10 +4,9 @@ import Home from './views/Home.vue'
 import IncomesView from '@/components/Incomes/IncomesView'
 import LoginComponent from '@/components/Auth/Login'
 import RegisterComponent from '@/components/Auth/Register'
-import ExpendituresList from '@/components/Expenditure/ExpendituresList'
+import ExpendituresView from '@/components/Expenditure/ExpendituresView'
 import store from '@/store'
 import authTypes from '@/types/auth'
-import globalTypes from '@/types/global'
 
 Vue.use(Router);
 
@@ -54,7 +53,7 @@ const router = new Router({
     {
       path: '/expenditures',
       name: 'expenditures_view',
-      component: ExpendituresList,
+      component: ExpendituresView,
       meta: {Auth: true, title: 'Expenditures'}
     }
   ]
