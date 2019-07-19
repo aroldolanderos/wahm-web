@@ -23,7 +23,7 @@
         name: "LanguageSelector",
         data () {
             return {
-                selected_language: 'es',
+                selected_language: this.$store.state.language,
                 languages: [
                     { value: 'es', label: 'Español' },
                     { value: 'en', label: 'English' },

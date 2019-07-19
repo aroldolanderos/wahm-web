@@ -13,7 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     processing: false,
-    language: 'es'
+    language: window.localStorage.getItem('_locale') || 'es'
   },
   actions: {
     [globalTypes.actions.changeLanguage]: ({commit}, lang) => {
@@ -42,6 +42,7 @@ export default new Vuex.Store({
       state.processing = false;
     },
     [globalTypes.mutations.setLanguage] (state, lang) {
+      window.localStorage.setItem('_locale', lang);
       state.language = lang;
     }
   },

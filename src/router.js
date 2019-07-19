@@ -68,7 +68,6 @@ router.beforeEach((to, from, next) => {
     if (store.state.authModule.logged) {
       store.commit(authTypes.mutations.setUser);
     }
-    store.commit(globalTypes.mutations.setLanguage);
     next();
   }
 });
