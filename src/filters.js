@@ -6,5 +6,8 @@ Vue.filter('relativeTime', (value) => {
 });
 
 Vue.filter('toCLP', function (price) {
+	price = (price/1).toFixed(0).replace('.', ',')
+    price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
     return `$${price}`;
 });
