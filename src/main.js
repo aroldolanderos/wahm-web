@@ -31,8 +31,8 @@ const i18n = new VueI18n({
 });
 
 
-// import {ClientTable} from 'vue-tables-2'
-// Vue.use(ClientTable, {}, false, 'bootsrap4', 'default')
+import {ClientTable} from 'vue-tables-2'
+Vue.use(ClientTable, {}, false, 'bootstrap4', 'default')
 
 new Vue({
   i18n,

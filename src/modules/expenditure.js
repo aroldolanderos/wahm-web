@@ -15,7 +15,7 @@ const actions = {
         return new Promise( (resolve, reject) => {
             Vue.http.post('expenditures', expenditureInput)
                 .then(expenditure => {
-                    console.log(expenditure);
+                    commit(types.mutations.addExpenditure, {expenditure: expenditure.body.data});
                     resolve(expenditure);
                 })
                 .catch(error => {
@@ -59,6 +59,9 @@ const getters = {
 const mutations = {
     [types.mutations.receivedExpenditures]: (state, {apiResponse}) => {
         state.expenditures = apiResponse.data;
+    },
+    [types.mutations.addExpenditure]: (state, {expenditure}) => {
+        state.expenditures.data.unshift(expenditure)
     },
     [types.mutations.setSearch]: (state, query) => {
         state.query.search = query;

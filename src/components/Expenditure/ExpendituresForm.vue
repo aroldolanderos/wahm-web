@@ -3,9 +3,9 @@
         <h1>Form</h1>
         <form class="awas-validated" @submit.prevent="validateBeforeSubmit">
             <div class="form-row align-items-end">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-12">
                     <label>Monto</label>
-                    <div class="input-group input-group-lg">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
@@ -19,18 +19,18 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-12">
                     <label>Tipo</label>
-                    <select id="inputState" class="form-control form-control-lg"
-                            v-model="type">
+                    <select id="inputState" class="form-control"
+                            v-model="expenditure_type">
                         <option value="PRODUCT">Producto</option>
                         <option value="SERVICE">Servicio</option>
                     </select>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-12">
                     <label>Nombre</label>
-                    <input type="text" class="form-control form-control-lg"
+                    <input type="text" class="form-control"
                            placeholder="Nombre"
                            name="name"
                            :class="{ 'is-invalid': errors.has('name') }"
@@ -41,29 +41,29 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-6" v-if="expenditure_type==='PRODUCT'">
                     <label>Cantidad</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Cantidad"
+                    <input type="text" class="form-control" placeholder="Cantidad"
                            v-model="quantity">
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-6" v-if="expenditure_type==='PRODUCT'">
                     <label>Medida</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Medida"
+                    <input type="text" class="form-control" placeholder="Medida"
                            v-model="measure">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-12">
                     <label>Categoría</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Categoría"
+                    <input type="text" class="form-control" placeholder="Categoría"
                            v-model="category">
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-12">
                     <label>Necesidad</label>
-                    <input type="number" class="form-control form-control-lg"
+                    <input type="number" class="form-control"
                            placeholder="Necesidad"
-                        v-model="lvl_need">
+                        v-model="level_need">
                 </div>
-                <div class="form-group col-md-1">
-                    <button type="submit" class="btn btn-primary">Registrar Gasto</button>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Registrar Gasto</button>
                 </div>
             </div>
         </form>
@@ -78,12 +78,12 @@
         data() {
             return {
                 amount: '',
-                type: 'PRODUCT',
+                expenditure_type: 'PRODUCT',
                 name: '',
                 quantity: '',
                 measure: '',
                 category: '',
-                lvl_need: 5,
+                level_need: 5,
                 error: null
             }
         },
@@ -97,14 +97,14 @@
                         if (result) {
                             this.createNew({
                                 amount: this.amount,
-                                type: this.type,
+                                expenditure_type: this.expenditure_type,
                                 name: this.name,
                                 quantity: this.quantity,
-                                meassure: this.meassure,
+                                measure: this.measure,
                                 category: this.category,
-                                lvl_need: this.lvl_need,
+                                level_need: this.level_need,
                             }).then( expenditure => {
-                                    console.log("resultado desde component: "+expenditure);
+                                    // console.log("resultado desde component: "+expenditure.body.data);
                                 })
                                 .catch( error => {
                                     console.error(error);

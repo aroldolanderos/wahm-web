@@ -1,10 +1,10 @@
 <template>
     <div class="row">
-        <div class="col-lg-12">
-            <ExpendituresForm></ExpendituresForm>
-        </div>
-        <div class="col-lg-12">
+        <div class="col-lg-9">
             <ExpendituresList></ExpendituresList>
+        </div>
+        <div class="col-lg-3">
+            <ExpendituresForm></ExpendituresForm>
         </div>
     </div>
 </template>
