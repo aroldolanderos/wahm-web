@@ -8,11 +8,8 @@
                         <div class="col-lg-1 align-self-center">
                             <div class="lvl-need" :style="{background: getColor(exp.level_need)}"></div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 align-self-center">
                             <h4 class="exp-type">{{ exp.expenditure_type }}</h4>
-                            <span class="created-at">
-                                {{ exp.created_at | relativeTime }}
-                            </span>
                         </div>
                         <div class="col-lg-8 align-self-end">
                             <div class="exp-name">
@@ -20,6 +17,9 @@
                                 <span v-if="exp.expenditure_type == 'PRODUCT'">
                                     {{ exp.quantity }} {{ exp.measure }}
                                 </span>
+                            </div>
+                            <div class="created-at">
+                                {{ exp.created_at | relativeTime }}
                             </div>
                         </div>
                     </div>
@@ -99,15 +99,15 @@
             .exp-name {
                 font-size: 1rem;
                 color: #a7abc3;
-                padding-bottom: 0.5rem;
+                /*padding-bottom: 0.5rem;*/
                 font-weight: 500;
             }
             .exp-type {
                 /*padding-top: 0rem;*/
                 font-size: .8rem;
                 font-weight: bold;
-                margin-top: 6px;
-                margin-bottom: -6px;
+                margin-top: 12px;
+                /*margin-bottom: -6px;*/
                 color: #5d78ff;
             }
             .created-at {
