@@ -4,7 +4,7 @@
       <BlockUI :message="'Processando la petición...'"></BlockUI>
     </div>
     <Navegation v-if="isLogged"></Navegation>
-    <main class="container-fluid" id="wham-content">
+    <main class="container" id="wham-content">
       <!-- Content here -->
       <router-view/>
     </main>

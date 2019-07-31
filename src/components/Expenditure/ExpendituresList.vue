@@ -1,72 +1,31 @@
 <template>
     <div class="expenditures-list">
         <h1>{{ $t('expenditures.title') }}</h1>
-        <!--<v-client-table :data="expenditures.data"-->
-                        <!--:options="options"-->
-                        <!--:columns="columns">-->
-        <!--</v-client-table>-->
-        <!--<table class="table">-->
-            <!--<thead class="thead-dark">-->
-            <!--<tr>-->
-                <!--<th scope="col">{{ $t('expenditures.model.amount') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.type') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.name') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.quantity') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.measure') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.category') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.lvl_need') }}</th>-->
-                <!--<th scope="col">{{ $t('expenditures.model.created_at') }}</th>-->
-            <!--</tr>-->
-            <!--</thead>-->
-            <!--<tbody>-->
-            <!--<tr v-for="(exp, index) in expenditures.data" :key="index">-->
-                <!--<td>{{ exp.amount | toCLP }}</td>-->
-                <!--<td>{{ exp.expenditure_type }}</td>-->
-                <!--<td>{{ exp.name }}</td>-->
-                <!--<td>{{ exp.quantity }}</td>-->
-                <!--<td>{{ exp.measure }}</td>-->
-                <!--<td>{{ exp.category }}</td>-->
-                <!--<td>{{ exp.level_need }}</td>-->
-                <!--<td>{{ exp.created_at | relativeTime }}</td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
-
         <div class="card content-card" v-for="(exp, index) in expenditures.data" :key="index">
             <div class="row">
-                <div class="col-sm-12 col-lg-12">
+                <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-6 col-lg-10">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <h4 class="exp-type">{{ exp.expenditure_type }}</h4>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="exp-name">
-                                        {{ exp.name }}
-                                        <span v-if="exp.expenditure_type == 'PRODUCT'">
-                                            {{ exp.quantity }}{{ exp.measure }}
-                                        </span>
-                                    </div>
-                                    <div class="lvl-need-content">
-                                        <div class="lvl-need-percent"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-1 align-self-center">
+                            <div class="lvl-need" :style="{background: getColor(exp.level_need)}"></div>
                         </div>
-                        <div class="col-6 col-lg-2 text-right">
-                            <h4 class="amount">{{ exp.amount | toCLP }}</h4>
+                        <div class="col-lg-3">
+                            <h4 class="exp-type">{{ exp.expenditure_type }}</h4>
+                            <span class="created-at">
+                                {{ exp.created_at | relativeTime }}
+                            </span>
                         </div>
-                        <div class="col-lg-12 text-right align-self-end">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="created-at">
-                                        {{ exp.created_at | relativeTime }}
-                                    </div>
-                                </div>
+                        <div class="col-lg-8 align-self-end">
+                            <div class="exp-name">
+                                {{ exp.name }}
+                                <span v-if="exp.expenditure_type == 'PRODUCT'">
+                                    {{ exp.quantity }} {{ exp.measure }}
+                                </span>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-3 align-self-center text-right">
+                    <h4 class="amount">{{ exp.amount | toCLP }}</h4>
                 </div>
             </div>
         </div>
@@ -103,6 +62,21 @@
             ...mapGetters({
                 expenditures: expendituresTypes.getters.expenditures
             })
+        },
+        methods: {
+            getColor(lvl_need) {
+                let percent = lvl_need*10;
+
+                if (percent > 80) {
+                    return '#28a745'
+                } else if (percent > 50) {
+                    return '#007bff'
+                } else if (percent > 30) {
+                    return '#ffc107'
+                } else {
+                    return '#dc3545'
+                }
+            }
         }
     }
 </script>
@@ -112,13 +86,13 @@
         &.content-card {
             box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
             background-color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             border-radius: 4px;
-            padding: 10px 15px 5px 15px;
+            padding: 6px 15px;
 
             .amount {
                 margin-bottom: 0;
-                font-size: 1.8rem;
+                font-size: 1.2rem;
                 font-weight: 600;
                 color: #6c7293;
             }
@@ -129,7 +103,11 @@
                 font-weight: 500;
             }
             .exp-type {
-                margin-bottom: 0;
+                /*padding-top: 0rem;*/
+                font-size: .8rem;
+                font-weight: bold;
+                margin-top: 6px;
+                margin-bottom: -6px;
                 color: #5d78ff;
             }
             .created-at {
@@ -138,11 +116,15 @@
                 font-size: 13px;
             }
 
+            .lvl-need {
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+            }
             .lvl-need-content {
                 width: 100%;
                 height: 5px;
                 background-color: #ebedf2;
-                padding-right: 20%;
                 .lvl-need-percent {
                     width: 100%;
                     height: 5px;
